@@ -1,0 +1,53 @@
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
+
+const CustomerCabinet = ({ customers }) => {
+  const [customerList, setCustomerList] = useState([]);
+
+  useEffect(() => {
+    setCustomerList(customers);
+  }, [customers]);
+
+  return (
+    <FlatList
+      data={customerList}
+      renderItem={({ item }) => (
+        <View style={styles.customer}>
+          <Text style={styles.customerName}>{item.nameOfCustomer}</Text>
+          <Text style={styles.customerLastName}>{item.lastName}</Text>
+          <Text style={styles.customerFirstName}>{item.firstName}</Text>
+          <Text style={styles.customerRank}>{item.rank}</Text>
+          <Text style={styles.customerComments}>{item.comments}</Text>
+        </View>
+      )}
+    />
+  );
+};
+
+const styles = StyleSheet.create({
+  customer: {
+    width: 300,
+    margin: 10,
+    borderRadius: 5,
+    borderColor: '#ccc',
+    borderWidth: 1,
+  },
+  customerName: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  customerLastName: {
+    fontSize: 15,
+  },
+  customerFirstName: {
+    fontSize: 15,
+  },
+  customerRank: {
+    fontSize: 15,
+  },
+  customerComments: {
+    fontSize: 15,
+  },
+});
+
+export default CustomerCabinet;

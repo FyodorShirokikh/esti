@@ -1,0 +1,82 @@
+import React, { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+
+const OrderForm = ({ onSubmit }) => {
+  const [nameOfOrder, setNameOfOrder] = useState('');
+  const [segment, setSegment] = useState('');
+  const [price, setPrice] = useState('');
+  const [comments, setComments] = useState('');
+
+  const handleSubmit = () => {
+    onSubmit({
+      nameOfOrder,
+      segment,
+      price,
+      comments,
+    });
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.header}>Order Form</Text>
+      <View style={styles.form}>
+        <Text style={styles.label}>Name of Order</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setNameOfOrder}
+          value={nameOfOrder}
+        />
+        <Text style={styles.label}>Segment</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setSegment}
+          value={segment}
+        />
+        <Text style={styles.label}>Price</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setPrice}
+          value={price}
+        />
+        <Text style={styles.label}>Comments</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setComments}
+          value={comments}
+        />
+      </View>
+      <Button
+        title="Submit"
+        onPress={handleSubmit}
+      />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    width: 300,
+    margin: 10,
+    borderRadius: 5,
+    borderColor: '#ccc',
+    borderWidth: 1,
+  },
+  header: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  form: {
+    width: 250,
+    margin: 10,
+  },
+  label: {
+    fontSize: 15,
+  },
+  input: {
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+  },
+});
+
+export default OrderForm;

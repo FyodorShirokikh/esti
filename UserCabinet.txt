@@ -1,0 +1,53 @@
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
+
+const UserCabinet = ({ users }) => {
+  const [userList, setUserList] = useState([]);
+
+  useEffect(() => {
+    setUserList(users);
+  }, [users]);
+
+  return (
+    <FlatList
+      data={userList}
+      renderItem={({ item }) => (
+        <View style={styles.user}>
+          <Text style={styles.userName}>{item.nameOfUser}</Text>
+          <Text style={styles.userLastName}>{item.lastName}</Text>
+          <Text style={styles.userFirstName}>{item.firstName}</Text>
+          <Text style={styles.userRank}>{item.rank}</Text>
+          <Text style={styles.userComments}>{item.comments}</Text>
+        </View>
+      )}
+    />
+  );
+};
+
+const styles = StyleSheet.create({
+  user: {
+    width: 300,
+    margin: 10,
+    borderRadius: 5,
+    borderColor: '#ccc',
+    borderWidth: 1,
+  },
+  userName: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  userLastName: {
+    fontSize: 15,
+  },
+  userFirstName: {
+    fontSize: 15,
+  },
+  userRank: {
+    fontSize: 15,
+  },
+  userComments: {
+    fontSize: 15,
+  },
+});
+
+export default UserCabinet;
